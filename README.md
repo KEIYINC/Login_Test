@@ -1,44 +1,65 @@
-# Price Comparison Using Selenium
+# Automated Login Testing Using Selenium
 
 ## Overview
-This project automates the process of comparing product prices across multiple e-commerce websites using **Selenium WebDriver**. The main goal is to extract price information for a specific product from various online retailers, perform basic analysis (such as calculating minimum, maximum, and average prices), and output the results.
+The primary objective of this project is to automate the login process and validate both successful and unsuccessful login attempts across multiple browsers. The code ensures that the login functionality works as expected by checking the URL and error messages after attempting to log in.
 
 ## Framework and Technologies Used
 
-- **Selenium WebDriver**: Used to automate web browsers for scraping price data from multiple e-commerce websites.
-- **Java**: The primary programming language for implementing the solution and handling the logic of the price comparison.
-- **XPath**: Employed to locate specific elements on web pages (price elements) for extracting data.
+- **Selenium WebDriver**: Used to automate web browsers and simulate user interactions for login testing.
+- **TestNG**: A testing framework used to manage and run the test cases.
+- **Google Chrome and Microsoft Edge**: The browsers on which the tests are executed to verify cross-browser compatibility.
 
 ## How the Code Works
 
 ### 1. **Initialization**:
-The program starts by configuring the **Selenium WebDriver** for Chrome, which will be used to automate browser interactions.
+The WebDriver is set up for both **Google Chrome** and **Microsoft Edge**. The browser is launched based on the specified configuration.
 
-### 2. **Define Product and URLs**:
-A product name is defined, and a list of URLs from various e-commerce sites is provided where the price of the product will be scraped.
+### 2. **Define Test Methods**:
+Test methods are created for both successful and unsuccessful login attempts. The URL of the login page, along with the correct and incorrect credentials, are defined for testing.
 
-### 3. **Price Collection**:
-The WebDriver visits each specified URL.
-It uses **XPath** to locate the HTML elements that contain the product prices. The XPath expressions are tailored to match the specific structure of each website.
+### 3. **Login Validation**:
+- The WebDriver navigates to the login page and performs login attempts with valid and invalid credentials.
+- It validates the login results by checking:
+  - If the URL changes (for successful login).
+  - If the correct error message appears (for unsuccessful login).
 
-### 4. **Price Analysis**:
-Once prices are collected, the program calculates:
-- **Minimum price**: The lowest price across all websites.
-- **Maximum price**: The highest price found.
-- **Average price**: The mean value of all collected prices.
+### 4. **Cross-Browser Compatibility**:
+The tests are run on both **Google Chrome** and **Microsoft Edge** to ensure that the login functionality works correctly across different browsers.
 
 ### 5. **Output Results**:
-Finally, the program prints the minimum, maximum, and average prices to the console for comparison.
+Test results are generated for both browsers, indicating whether the tests passed or failed. The success of login attempts and the validation of error messages are reported.
 
-## Example Output
-Prdocut: Example Product Minimum Price: 199$ Maximum Price: $249.99 Average Price: $224.99
+## Example Test Output
 
+Test Browser: Google Chrome Test: Valid Login URL: https://www.example.com/dashboard - Passed
+
+Test: Invalid Login Error Message: "Invalid credentials" - Passed
+
+Test Browser: Microsoft Edge Test: Valid Login URL: https://www.example.com/dashboard - Passed
+
+Test: Invalid Login Error Message: "Invalid credentials" - Passed
+
+
+## Annotations Used
+
+- **@BeforeClass**: Sets up the WebDriver before any tests run.
+- **@BeforeMethod**: Loads the login page before each test method.
+- **@Test**: Defines the test methods for both valid and invalid login attempts.
+- **@AfterClass**: Quits the WebDriver after all tests are completed.
+- **@Factory**: Generates test instances for running the tests on different browsers.
 
 ## Prerequisites
 
 - **Java** (version 8 or above)
 - **Selenium WebDriver**
-- **ChromeDriver** (for Chrome browser automation)
+- **TestNG** (for managing tests)
+- **ChromeDriver** and **EdgeDriver** (for browser automation)
 - **Maven** (for dependency management)
 
+## How to Run:
 
+1. Clone this repository or download the source code.
+2. Ensure you have **Java**, **Selenium WebDriver**, and **TestNG** set up.
+3. Download the required **ChromeDriver** and **EdgeDriver** for your system and configure them in the code.
+4. Add the appropriate login page URL and credentials for testing.
+5. Run the tests using **TestNG**.
